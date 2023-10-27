@@ -2,7 +2,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-    const {_id, title, description, price, img } = service;
+    const {_id, title, price, img } = service;
     return (
         <div className="card w-96 bg-base-100 shadow-xl text-left">
             <figure className="px-10 pt-10">
