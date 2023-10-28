@@ -12,7 +12,7 @@ const ServiceCard = ({ service }) => {
                 <h2 className="card-title">{title}</h2>
                 <div className="flex items-center justify-between text-[#FF3811] font-bold">
                     <p>Price: ${price}</p>
-                    <Link to={`/services/${_id}`}><FaArrowRight></FaArrowRight></Link>
+                    <Link to={`/book/${_id}`}><FaArrowRight></FaArrowRight></Link>
                 </div>
 
             </div>

@@ -26,6 +26,7 @@ const Login = () => {
         .catch(error=>{
             setError(error.message);
         })
+        form.reset()
     }
 
     return (
