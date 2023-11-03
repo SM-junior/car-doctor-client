@@ -12,26 +12,26 @@ const TableRow = ({ booking, bookings, setBookings }) => {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          })
-          .then((result) => {
-            if (result.isConfirmed) {
-                fetch(`http://localhost:3000/bookings/${_id}`, {
-                method: "DELETE"
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:3000/bookings/${_id}`, {
+                        method: "DELETE"
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.deletedCount > 0) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                const remaining = bookings.filter(book => book._id !== _id)
+                                setBookings(remaining)
+                            }
+                        })
+                }
             })
-            .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                          )
-                        const remaining=bookings.filter(book=> book._id !==_id)
-                        setBookings(remaining)
-                    }
-                })
-            }
-          })
     }
     return (
         <tr>

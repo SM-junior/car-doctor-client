@@ -9,37 +9,37 @@ import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      children:[
-        {
-            path:'/',
-            element:<Home></Home>
-        },
-        {
-          path:'/login',
-          element:<Login></Login>
-        },
-        {
-          path:'/singup',
-          element:<SignUp></SignUp>
-        },
-        {
-          path:'/book/:id',
-          element:<PrivateRoute><BookService></BookService></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:3000/services/${params.id}`)
-        },
-        {
-          path:'/bookings',
-          element:<PrivateRoute><Booking></Booking></PrivateRoute>
-        },
-        {
-          path:'/table',
-          element:<TableRow></TableRow>
-        }
-      ]
-    },
-  ]);
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/singup',
+        element: <SignUp></SignUp>
+      },
+      {
+        path: '/book/:id',
+        element: <PrivateRoute><BookService></BookService></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:3000/services/${params.id}`)
+      },
+      {
+        path: '/bookings',
+        element: <PrivateRoute><Booking></Booking></PrivateRoute>
+      },
+      {
+        path: '/table',
+        element: <TableRow></TableRow>
+      }
+    ]
+  },
+]);
 
-  export default router; 
+export default router; 

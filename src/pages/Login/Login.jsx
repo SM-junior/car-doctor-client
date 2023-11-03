@@ -6,31 +6,29 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { useState } from 'react';
 
 const Login = () => {
-    const [success,setSuccess]=useState('');
-    const [error, setError]=useState('');
+    const [success, setSuccess] = useState('');
+    const [error, setError] = useState('');
 
-    const location=useLocation();
-    const navigate=useNavigate();
-    const from=location.state?.from?.pathname || '/';
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
-    const {signIn}=useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
 
     const handleLogin = e => {
         e.preventDefault();
-        const form=e.target;
-        const email=form.email.value;
-        const password=form.password.value;
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
-        signIn(email,password)
-        .then(result=>{
-            const user=result.user;
-            setSuccess('User login successful')
-            console.log(user);
-            navigate(from, {replace:true})
-        })
-        .catch(error=>{
-            setError(error.message);
-        })
+        signIn(email, password)
+            .then(() => {
+                setSuccess('User login successful')
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                setError(error.message);
+            })
         form.reset()
     }
 
