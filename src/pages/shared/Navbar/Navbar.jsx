@@ -1,4 +1,3 @@
-import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../../../assets/logo.svg"
@@ -20,7 +19,9 @@ const Navbar = () => {
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact</Link></li>
         {
-            user?.email? <li><button onClick={handleLogOut}>Logout</button></li>:
+            user?.email? <>
+            <li><Link to='/bookings'>My Bookings</Link></li>
+            <li><button onClick={handleLogOut}>Logout</button></li></>:
             <li><Link to='/login'>Login</Link></li>
         }
         

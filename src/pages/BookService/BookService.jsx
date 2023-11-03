@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const BookService = () => {
     const service = useLoaderData();
     const { _id, title, price, img } = service;
-    const { user} = useContext(AuthContext)
-
+    const { user } = useContext(AuthContext)
 
     const handleBookService = e => {
         e.preventDefault()
@@ -25,8 +25,6 @@ const BookService = () => {
             service_id: _id,
             service: title
         }
-        console.log(booking);
-
         fetch('http://localhost:3000/bookings', {
             method: 'POST',
             headers: {
@@ -37,9 +35,17 @@ const BookService = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        // position: 'top-end',
+                        icon: 'success',
+                        title: 'Your booking is successful',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             })
-
-            form.reset()
+        form.reset()
 
     }
     return (
@@ -61,7 +67,7 @@ const BookService = () => {
                     </div>
                 </div>
                 {/* <textarea placeholder="Your Message" className="textarea textarea-bordered w-full my-4 py-6" ></textarea> */}
-                <input type='submit' value='Order Confirm' className="btn btn-block bg-red-500 capitalize" />
+                <input type='submit' value='Order Confirm' className="btn btn-block bg-red-400 capitalize hover:bg-red-500 hover:text-white" />
             </form>
         </div>
     );

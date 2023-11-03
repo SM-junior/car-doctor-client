@@ -1,15 +1,19 @@
 import login from '../../assets/images/login/login.svg'
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useState } from 'react';
 
 const Login = () => {
-    const [success,setSuccess]=useState('')
-    const [error, setError]=useState('')
+    const [success,setSuccess]=useState('');
+    const [error, setError]=useState('');
 
-    const {signIn}=useContext(AuthContext)
+    const location=useLocation();
+    const navigate=useNavigate();
+    const from=location.state?.from?.pathname || '/';
+
+    const {signIn}=useContext(AuthContext);
 
     const handleLogin = e => {
         e.preventDefault();
@@ -22,6 +26,7 @@ const Login = () => {
             const user=result.user;
             setSuccess('User login successful')
             console.log(user);
+            navigate(from, {replace:true})
         })
         .catch(error=>{
             setError(error.message);
