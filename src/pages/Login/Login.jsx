@@ -22,9 +22,30 @@ const Login = () => {
         const password = form.password.value;
 
         signIn(email, password)
-            .then(() => {
+            .then((result) => {
+                const user=result.user;
+                const loggedUser={
+                    email:user.email
+                }
+                console.log(loggedUser);
                 setSuccess('User login successful')
-                navigate(from, { replace: true })
+                // navigate(from, { replace: true })
+
+                fetch('http://localhost:3000/jwt',{
+                    method:'POST',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify(loggedUser)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log('jwt response', data);
+
+                    //warning: local storage is not the best to store access token
+
+                    localStorage.setItem('car-access-token', data.token)
+                })
             })
             .catch(error => {
                 setError(error.message);

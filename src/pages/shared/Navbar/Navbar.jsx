@@ -8,7 +8,11 @@ const Navbar = () => {
 
     const handleLogOut=()=>{
         logOut()
-        .then(()=>{})
+        .then(()=>{
+            
+            //remove jwt token from local storage
+            localStorage.removeItem('car-access-token')
+        })
         .catch(error=>{
             console.log(error);
         })
