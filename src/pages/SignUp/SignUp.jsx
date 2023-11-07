@@ -1,8 +1,9 @@
 import login from '../../assets/images/login/login.svg'
-import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa6";
+// import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Social from '../shared/Social/Social';
 
 const SignUp = () => {
     const {createUser}=useContext(AuthContext)
@@ -60,11 +61,12 @@ const SignUp = () => {
                         <p className='text-red-500'>{error}</p>
                     </form>
                     <p className='text-center'>Or Sign Up with</p>
-                    <div className='flex items-center justify-center my-3'>
+                    {/* <div className='flex items-center justify-center my-3'>
                         <FaFacebookF className='text-[#3B5998] w-[40px] h-[40px] p-3 me-3 bg-[#F5F5F8] rounded-full cursor-pointer'></FaFacebookF>
                         <FaLinkedinIn className='text-[#3B5998] w-[40px] h-[40px] p-3 me-3 bg-[#F5F5F8] rounded-full cursor-pointer'></FaLinkedinIn>
                         <FaGoogle className=' w-[40px] h-[40px] p-3 me-3 bg-[#F5F5F8] rounded-full cursor-pointer'></FaGoogle>
-                    </div>
+                    </div> */}
+                    <Social></Social>
                     <p className='text-center pb-6'>Already have an account? <Link to='/login'><span className='text-[#FF3811]'>Login</span></Link></p>
                 </div>
             </div>

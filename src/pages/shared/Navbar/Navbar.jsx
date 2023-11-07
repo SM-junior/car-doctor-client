@@ -4,18 +4,14 @@ import logo from "../../../assets/logo.svg"
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Navbar = () => {
-    const {user, logOut}=useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-    const handleLogOut=()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            
-            //remove jwt token from local storage
-            localStorage.removeItem('car-access-token')
-        })
-        .catch(error=>{
-            console.log(error);
-        })
+            .then(() => { })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     const navItems = <>
@@ -23,12 +19,12 @@ const Navbar = () => {
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/contact'>Contact</Link></li>
         {
-            user?.email? <>
-            <li><Link to='/bookings'>My Bookings</Link></li>
-            <li><button onClick={handleLogOut}>Logout</button></li></>:
-            <li><Link to='/login'>Login</Link></li>
+            user?.email ? <>
+                <li><Link to='/bookings'>My Bookings</Link></li>
+                <li><button onClick={handleLogOut}>Logout</button></li></> :
+                <li><Link to='/login'>Login</Link></li>
         }
-        
+
     </>
     return (
         <div className="navbar bg-base-100 h-32 mb-6">
@@ -49,7 +45,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <button className="btn btn-warning">Appointment</button>
+                <button className="btn btn-warning">Appointment</button>
             </div>
         </div>
     );

@@ -1,10 +1,11 @@
 import login from '../../assets/images/login/login.svg'
-import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa6";
+// import { FaFacebookF, FaLinkedinIn, FaGoogle } from "react-icons/fa6";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useState } from 'react';
 import Swal from 'sweetalert2'
+import Social from '../shared/Social/Social';
 
 
 
@@ -27,28 +28,8 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 const user=result.user;
-                const loggedUser={
-                    email:user.email
-                }
-                fetch('http://localhost:3000/jwt',{
-                    method:"POST",
-                    headers:{
-                        'content-type':'application/json'
-                    },
-                    body:JSON.stringify(loggedUser)
-                })
-                .then(res=>res.json())
-                .then(data=>{
-                    localStorage.setItem('car-access-token', data.token)
-                    Swal.fire({
-                        position: "top",
-                        icon: "success",
-                        title: "User has been created successful",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                    navigate(from, {replace: true})
-                })
+                console.log(user);
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 setError(error.message);
@@ -82,11 +63,12 @@ const Login = () => {
                         <p className='text-red-500'>{error}</p>
                     </form>
                     <p className='text-center'>Or Sign In with</p>
-                    <div className='flex items-center justify-center my-3'>
+                    {/* <div className='flex items-center justify-center my-3'>
                         <FaFacebookF className='text-[#3B5998] w-[40px] h-[40px] p-3 me-3 bg-[#F5F5F8] rounded-full cursor-pointer'></FaFacebookF>
                         <FaLinkedinIn className='text-[#3B5998] w-[40px] h-[40px] p-3 me-3 bg-[#F5F5F8] rounded-full cursor-pointer'></FaLinkedinIn>
                         <FaGoogle className=' w-[40px] h-[40px] p-3 me-3 bg-[#F5F5F8] rounded-full cursor-pointer'></FaGoogle>
-                    </div>
+                    </div> */}
+                    <Social></Social>
                     <p className='text-center pb-6'>New to Car Doctors? <Link to='/singup'><span className='text-[#FF3811]'>Sign up</span></Link></p>
                 </div>
             </div>
