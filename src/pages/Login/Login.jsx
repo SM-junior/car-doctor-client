@@ -4,6 +4,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useState } from 'react';
+import Swal from 'sweetalert2'
+
+
 
 const Login = () => {
     const [success, setSuccess] = useState('');
@@ -27,12 +30,8 @@ const Login = () => {
                 const loggedUser={
                     email:user.email
                 }
-                console.log(loggedUser);
-                setSuccess('User login successful')
-                // navigate(from, { replace: true })
-
                 fetch('http://localhost:3000/jwt',{
-                    method:'POST',
+                    method:"POST",
                     headers:{
                         'content-type':'application/json'
                     },
@@ -40,11 +39,15 @@ const Login = () => {
                 })
                 .then(res=>res.json())
                 .then(data=>{
-                    console.log('jwt response', data);
-
-                    //warning: local storage is not the best to store access token
-
                     localStorage.setItem('car-access-token', data.token)
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "User has been created successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    navigate(from, {replace: true})
                 })
             })
             .catch(error => {

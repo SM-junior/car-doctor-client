@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
@@ -36,7 +36,6 @@ const BookService = () => {
             .then(data => {
                 if (data.insertedId) {
                     Swal.fire({
-                        // position: 'top-end',
                         icon: 'success',
                         title: 'Your booking is successful',
                         showConfirmButton: false,
